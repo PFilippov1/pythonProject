@@ -14,6 +14,7 @@ def BubbleSort(A):  # сортировка пузырьком
 
 
 # 3. Функция шейкерной (коктейльной) сортировки shaker - модификации пузырьковой:
+
 def Shakesort(A):  # шейкерная
     for i in range(len(A) // 2):
         for j in range(i, len(A) - 1 - i):
@@ -28,27 +29,15 @@ def Shakesort(A):  # шейкерная
                         A[j - 1] = a
 
 
-# sample = [0, -1, 5, -2, 3]
+# 4. Функция сортировки выбором select:
 
-
-#
-# left = 0
-# right = len(sample) - 1
-#
-# while left <= right:
-#     for i in range(left, right, +1):
-#         if sample[i] > sample[i + 1]:
-#             sample[i], sample[i + 1] = sample[i + 1], sample[i]
-#     right -= 1
-#
-#     for i in range(right, left, -1):
-#         if sample[i - 1] > sample[i]:
-#             sample[i], sample[i - 1] = sample[i - 1], sample[i]
-#     left += 1
-#
-# print(sample)
-
-def SelectSort(D):
+def SelectSort(A):
+    for j in range(len(A) - 1):
+        m = i
+    for j in range(i, len(A)):
+        if A[j] < A[m]:
+            m = j
+            A[m], A[i] = A[i], A[m]
 
 
 def QuickSort(A, fst, lst):  # быстрая сортировка
@@ -121,7 +110,7 @@ for N in range(1000, 5001, 1000):
     y3.append((t6 - t5).total_seconds())
     print("Шейкерная   " + str(N) + "   заняла   " + str((t6 - t5).total_seconds()) + "c")
 
-## какой-то косяк надо разбираться....
+    ## какой-то косяк надо разбираться....
     table.add_row([str(N), str((t2 - t1).total_seconds()), str((t4 - t3).total_seconds()),
                    str((t6 - t5).total_seconds())])
 print(table)
