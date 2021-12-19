@@ -15,40 +15,15 @@ def BubbleSort(A):  # сортировка пузырьком
 
 # 2. Функция сортировки вставкой insert:
 
-# def InsertSort(A):
-#     for i in range(1, A(len)):
-#         t = A[i]
-#         j = i
-#         while j >= 0 and A[j - 1] > t:
-#             A[j] = A[j - 1]
-#             j -= 1
-#             A[j] = t
-
-
-# def InsertSort(A):
-#     for i in range(1, A(len)):
-#         t = A[i]
-#         j = i - 1
-#         while (j >= 0 and A[j] > t):
-#             A[j + 1] = A[j]
-#             j -= 1
-#             A[j + 1] = t
 
 def InsertSort(A):
-    # Сортировку начинаем со второго элемента, т.к. считается, что первый элемент уже отсортирован
     for i in range(1, len(A)):
-        item_to_insert = A[i]
-        # Сохраняем ссылку на индекс предыдущего элемента
-        j = i - 1
-        # Элементы отсортированного сегмента перемещаем вперёд, если они больше
-        # элемента для вставки
-        while j >= 0 and A[j] > item_to_insert:
-            A[j + 1] = A[j]
+        t = A[i]
+        j = i
+        while j >= 0 and A[j - 1] > t:
+            A[j] = A[j - 1]
             j -= 1
-        # Вставляем элемент
-        A[j + 1] = item_to_insert
-
-
+            A[j] = t
 
 
 # 3. Функция шейкерной (коктейльной) сортировки shaker - модификации пузырьковой:
@@ -68,26 +43,23 @@ def Shakesort(A):  # шейкерная
 
 
 # 4. Функция сортировки выбором select:
-# как-то быстро и график не рисует((
+# как-то быстро и график не рисует, нагуглил - работает, надо был не i, a i+1  for j in range(i + 1, len(A)):
 
-def SelectSort(A):
-    for j in range(len(A) - 1):
-        m = i
-    for j in range(i, len(A)):
-        if A[j] < A[m]:
-            m = j
-            A[m], A[i] = A[i], A[m]
-
-
-# def SelectSort(A): # где-то подсмотрел (не понял зачем j = j + 1, работает также - не работает))
+# def SelectSort(A):
 #     for j in range(len(A) - 1):
 #         m = i
-#         j = i + 1
-#     while j < len(A):
+#     for j in range(i, len(A)):
 #         if A[j] < A[m]:
 #             m = j
-#         j = j + 1
-#     A[i], A[m] = A[m], A[i]
+#             A[m], A[i] = A[i], A[m]
+
+def SelectSort(A):
+    for i in range(0, len(A) - 1):
+        m = i
+        for j in range(i + 1, len(A)):
+            if A[j] < A[m]:
+                m = j
+        A[i], A[m] = A[m], A[i]
 
 
 def QuickSort(A, fst, lst):  # быстрая сортировка
@@ -115,7 +87,8 @@ def QuickSort(A, fst, lst):  # быстрая сортировка
     QuickSort(A, first_bigger, lst)
 
 
-table = prettytable.PrettyTable(["Размер списка", "Время пузырька", "Время быстрой"])
+table = prettytable.PrettyTable(["Размер списка", "Время пузырька", "Время быстрой", "Время Шейкерной",
+                                 "Время Выбором", "Время вставкой"])
 x = []
 y1 = []
 y2 = []
@@ -176,10 +149,12 @@ for N in range(1000, 5001, 1000):
     y5.append((t10 - t9).total_seconds())
     print("Вставкой   " + str(N) + "   заняла   " + str((t10 - t9).total_seconds()) + "c")
 
-    ## какой-то косяк надо разбираться....
-#     table.add_row([str(N), str((t2 - t1).total_seconds()), str((t4 - t3).total_seconds()),
-#                    str((t6 - t5).total_seconds()), str((t8 - t7).total_seconds())])
-# print(table)
+    # какой-то косяк, не строится таблица, надо разбираться.., Разобрался (надо было в table поля добавить)..
+    # Теперь графики не строятся (вроде отвалился matplotlib, но в pycharm ошибок нет) \\ Все строится.
+    table.add_row([str(N), str((t2 - t1).total_seconds()), str((t4 - t3).total_seconds()),
+                   str((t6 - t5).total_seconds()), str((t8 - t7).total_seconds()),
+                   str((t10 - t9).total_seconds())])
+print(table)
 
 plt.plot(x, y1, "C0")
 plt.plot(x, y2, "C1")
