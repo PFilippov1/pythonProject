@@ -4,10 +4,6 @@
 
 import os
 
-file1 = "f1.txt"
-file2 = "f2.txt"
-
-
 try:
 
 
