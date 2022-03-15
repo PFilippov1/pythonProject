@@ -3,6 +3,11 @@
 # инкапсуляции. Пропишите запись и считывание (get, set) инкапсулированных полей.
 # Kласс Car: id, Марка, Модель, Год выпуска, Цвет, Цена, Регистрационный номер
 
+# Создать список объектов. Вывести:
+# a)	список автомобилей заданной марки;
+# б) список автомобилей заданной модели, которые эксплуатируются больше n лет;
+
+
 class Car:
     id = 0
 
@@ -13,9 +18,9 @@ class Car:
         self.year = year
         self.color = color
         self.price = price
-        self.__regNumber = 0      # вроде self.__regNumber = 0 можно и не указывать, т.к. будет сеттер
+        self.__regNumber = 0  # вроде self.__regNumber = 0 можно и не указывать, т.к. будет сеттер
         Car.id += 1
-
+        self.car_list
     def getBrand(self):
         return brand
 
@@ -49,6 +54,19 @@ class Car:
     def customer_discount(price):
         return price - (price * discount)
 
+    car_list = ["toyota", "auris", 2017, "red", 12000,
+                "mazda", "cx-5", 2020, "black", 22000,
+                "toyota", "Corolla ", 2018, "red", 21000,
+                "mazda", "cx-5", 2018, "white", 21000,
+                "toyota", "Camry ", 2016, "green", 14000,
+                "mazda", "cx-5", 2015, "blue", 16000,
+                "toyota", "Highlander", 2020, "blue", 28000,
+                "mazda", "cx-5", 2020, "grey", 22000,
+                "toyota", "RAV4", 2019, "black", 22000,
+                "mazda", "cx-5", 2017, "blue", 18000,
+                "toyota", "Land Cruiser Prado", 2019, "black", 30000,
+                "mazda", "cx-5", 2019, "white", 20000]
+
 
 print("please set years experience of our service")
 
@@ -77,3 +95,5 @@ Car.print_cars_id()
 car2.setRegNumber("33-mm-55")
 print(f" {car2.brand}, {car2.model}, {car2.year}, {car2.year}, {car2.price}, {car2.getRegNumber()}")
 print(Car.customer_discount(car2.price))
+
+

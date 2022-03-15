@@ -25,19 +25,16 @@ class LabTest(unittest.TestCase):
         print("==========================")
         print("Cleaning mess after a test")
 
-    def test_normal_evaluation(self):
-        """Normal CAR evaluation test"""
+    def setUp(self):
+        self.car = Car(1, "toyota", "auris", 2017, "red", 12000)
 
-    print("test id: " + self.id())
-    self.assertEqual(Car.print_list_brand(brand(toyota, toyota)),
-                     "Normal (toyota)")
+    def test_get_number(self):
+        self.assertEqual(self.car1.setRegNumber, '22-ff-44')
 
     def test_lifetime_calc(self):
-        """Lifetime_calc method test"""
         self.assertEqual("mazda", Lab7.car1.lifetime_calc(22000))
 
     def test_car_discount(self):
-        """Get_apartment_number method test"""
         self.assertGreater(Lab7.customer_discount(car2.price), Lab7.customer_discount(car1.price))
 
 
